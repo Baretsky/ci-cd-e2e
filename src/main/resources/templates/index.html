@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenue sur ce site</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Site de test en JAVA</h1>
+        <p id="date-time"></p>
+        <br>
+    </div>
+    <script>
+        var date = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById("date-time").innerHTML = date.toLocaleDateString('fr-FR', options);
+    </script>
+</body>
+</html>
