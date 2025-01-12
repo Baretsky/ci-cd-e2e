@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>com.baretsky</groupId>
 	<artifactId>demoapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>demoapp</name>
 	<description>Demo project for DevOps</description>
 	<url/>
@@ -65,6 +64,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+                <execution>
+                    <id>repackage</id>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                    <configuration>
+                        <finalName>demoapp</finalName>
+                    </configuration>
+                </execution>
+            </executions>
 			</plugin>
 		</plugins>
 	</build>

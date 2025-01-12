@@ -67,7 +67,7 @@ pipeline{
                         docker_image = docker.build("${IMAGE_NAME}")
                     }
 
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_USER, DOCKER_PASS){
+                    docker.withRegistry('', DOCKER_USER, DOCKER_PASS){
                         docker_image.push("${IMAGE_TAG}")
                     }
                 }
