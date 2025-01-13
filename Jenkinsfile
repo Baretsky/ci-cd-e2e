@@ -15,6 +15,7 @@ pipeline{
         DOCKER_PASS = "dockerhub"
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        JENKINS_API_TOKEN = "${JENKINS_API_TOKEN}"
     }
 
     stages{
@@ -70,6 +71,14 @@ pipeline{
                     docker.withRegistry('', DOCKER_PASS){
                         docker_image.push("${IMAGE_TAG}")
                     }
+                }
+            }
+        }
+
+        stage("Trigger CD Pipeline"){
+            steps{
+                script{
+                    sh "curl -v -k --user baretsky:${JENKINS_API_TOKEN} -X POST -H 'cache-conrtol: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'https://jenkins.baretsky.net/job/ci-cd-e2e-deployment/buildWithParameters?token=gitops-token'"
                 }
             }
         }
